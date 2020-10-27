@@ -3,8 +3,17 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>    
 
-
+<%!
+	String message="대덕개발원~~~~~~~~~~~~~~~";
+%>
     
 <script>
+	alert("<%=getMessage()%>")
 	location.href="gugudanForm.jsp";
 </script>
+
+<%!
+	public String getMessage(){
+		return message;
+}
+%>

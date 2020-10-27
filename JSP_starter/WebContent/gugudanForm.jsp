@@ -7,7 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style>
+	body{
+		background:<%=request.getParameter("color")%>
+	}
+</style>
 </head>
+
 <body>
 	<form action="gugudan.jsp" method="get">
 		<label for="dan"> 단수를 선택하세요.</label>
