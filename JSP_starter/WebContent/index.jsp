@@ -9,7 +9,7 @@
     
 <script>
 	alert("<%=getMessage()%>")
-	location.href="gugudanForm.jsp";
+	location.href="<%=request.getContextPath()%>/gugudan.html?color=pink";
 </script>
 
 <%!

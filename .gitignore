@@ -6,3 +6,6 @@ Servers/
 JSP_homework/.classpath
 JSP_homework/.project
 JSP_homework/.settings/
+JSP_homework/build/
+.recommenders/
+JSP_starter/build/

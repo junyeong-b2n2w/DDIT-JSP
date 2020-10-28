@@ -11,11 +11,13 @@
 	body{
 		background:<%=request.getParameter("color")%>
 	}
+	
 </style>
 </head>
 
 <body>
-	<form action="gugudan.jsp" method="get">
+	<h1><%=request.getAttribute("message") %></h1>
+	<form action="gugudan.html" method="post">
 		<label for="dan"> 단수를 선택하세요.</label>
 		<select name="dan" id="dan">
 			<option value="2">2단</option>
