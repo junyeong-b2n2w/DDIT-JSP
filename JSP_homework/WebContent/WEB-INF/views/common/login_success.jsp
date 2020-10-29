@@ -4,5 +4,5 @@
     
 <script>
 	alert('<%=request.getAttribute("message")%>');
-	location.href="https//www.google.com";
+	location.href="https://www.google.com";
 </script>

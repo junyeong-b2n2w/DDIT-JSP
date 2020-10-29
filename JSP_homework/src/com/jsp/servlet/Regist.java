@@ -27,6 +27,7 @@ public class Regist extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
 		String url = "/WEB-INF/views/common/regist_success.jsp";
 		//입력
 		String id = request.getParameter("id").trim();
@@ -46,7 +47,7 @@ public class Regist extends HttpServlet {
 			
 			member.setId(id);
 			member.setPwd(pwd);
-			member.setName(pwd);
+			member.setName(name);
 			member.setEmail(email);
 			member.setPhone(phone);
 			
@@ -54,11 +55,13 @@ public class Regist extends HttpServlet {
 			int cnt = service.regist(member);
 			
 			
-			if(cnt < 0) {
+			if(cnt > 0) {
+				message = member.getName() + "님 가입 성공 입니다.";
+				request.setAttribute("member", member);
+			}else {
+				
 				url ="/WEB-INF/views/common/regist_fail.jsp";  
 				message = "회원가입에 실패하였습니다.";
-			}else {
-				message = member.getName() + "님 가입 성공 입니다.";
 			}
 			
 			request.setAttribute("message", message);

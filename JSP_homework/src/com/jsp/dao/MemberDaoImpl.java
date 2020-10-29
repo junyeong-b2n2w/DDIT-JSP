@@ -37,7 +37,8 @@ public class MemberDaoImpl implements MemberDao{
 	public int regist(MemberVO member) throws SQLException {
 		int cnt = 0;
 		try {
-			cnt = (int)client.insert("member.regist",member);
+			Object obj = client.insert("member.regist",member);
+			if (obj == null) cnt = 1;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
