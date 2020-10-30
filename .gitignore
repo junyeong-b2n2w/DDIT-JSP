@@ -9,3 +9,8 @@ JSP_homework/.settings/
 JSP_homework/build/
 .recommenders/
 JSP_starter/build/
+JSP_EL/.classpath
+JSP_EL/.project
+JSP_EL/.settings/
+JSP_EL/build/
+JSP_EL/WebContent/META-INF/MANIFEST.MF

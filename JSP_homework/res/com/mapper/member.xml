@@ -8,6 +8,11 @@
 		select * from member where id=#id#
 	</select>
 	
+	
+	<select id="getMemberList" resultClass="memberVO">
+		select * from member 
+	</select>
+	
 	<insert id="regist" parameterClass="memberVO">
 		insert into member values( #id#, #pwd#, #name#, #email#, #phone#)
 	</insert>

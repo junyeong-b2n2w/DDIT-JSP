@@ -1,6 +1,7 @@
 package com.jsp.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.jsp.dao.MemberDao;
 import com.jsp.dao.MemberDaoImpl;
@@ -34,4 +35,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.regist(member);
 	}
 
+	@Override
+	public List<MemberVO> getMemberList() throws SQLException {
+		return dao.getMemberList();
+	}
 }

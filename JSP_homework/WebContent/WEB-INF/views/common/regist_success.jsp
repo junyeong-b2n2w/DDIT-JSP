@@ -16,7 +16,7 @@
 </script>
 </head>
 <body>
-
+ dus
 <h1 class="text-center">가입된 정보입니다</h1>
 <div class="container row text-center">
 	<table class="table table-bordered">

@@ -1,6 +1,7 @@
 package com.jsp.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.config.BuildSqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -45,5 +46,18 @@ public class MemberDaoImpl implements MemberDao{
 		
 		
 		return cnt;
+	}
+	
+	@Override
+	public List<MemberVO> getMemberList() throws SQLException {
+		List<MemberVO> memberList = null;
+		
+		try {
+			memberList = client.queryForList("member.getMemberList");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return memberList;
 	}
 }
