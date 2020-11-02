@@ -9,4 +9,5 @@ public interface MemberService {
 	
 	List<MemberVO> getMemberList() throws SQLException;
 	
+	MemberVO getMember(String id) throws SQLException;
 }

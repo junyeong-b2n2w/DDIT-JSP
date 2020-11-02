@@ -23,5 +23,14 @@ public class MemberServiceImpl implements MemberService{
 		return memberList;
 	}
 	
+	@Override
+	public MemberVO getMember(String id) throws SQLException {
+		MemberVO member = null; 
+		if(id.equals("jun")) {
+			member = new MemberVO("jun", "junpw" ,"junna","010-1234-1234","jun@jun.com");
+		}
+		return member;
+	}
+	
 	
 }
