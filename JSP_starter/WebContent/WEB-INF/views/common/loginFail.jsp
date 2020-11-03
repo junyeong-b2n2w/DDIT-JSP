@@ -3,6 +3,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>    
     
 <script>
-	alert('<%=request.getAttribute("message")%>');
+	alert('${message}');
 	location.href="<%=request.getContextPath()%>/common/login";
 </script>
