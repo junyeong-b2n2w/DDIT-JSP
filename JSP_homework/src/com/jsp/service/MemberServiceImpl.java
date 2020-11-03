@@ -39,4 +39,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> getMemberList() throws SQLException {
 		return dao.getMemberList();
 	}
+	@Override
+	public int delete(String id) throws SQLException {
+		return dao.delete(id);
+	}
+	@Override
+	public int modify(MemberVO member) throws SQLException {
+		return dao.modify(member);
+	}
 }

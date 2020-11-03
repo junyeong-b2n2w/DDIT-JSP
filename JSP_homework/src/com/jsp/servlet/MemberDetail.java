@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jsp.dto.MemberVO;
 import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
+import com.jsp.utils.ViewResolver;
 
 /**
  * Servlet implementation class MemberDetail
@@ -22,7 +23,7 @@ public class MemberDetail extends HttpServlet {
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url ="/WEB-INF/views/member/detail.jsp";
+		String url ="/member/detail";
 		
 		String id = request.getParameter("id");
 		
@@ -36,7 +37,7 @@ public class MemberDetail extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher(url).forward(request, response);
+		ViewResolver.view(url, request, response);
 	
 	}
 

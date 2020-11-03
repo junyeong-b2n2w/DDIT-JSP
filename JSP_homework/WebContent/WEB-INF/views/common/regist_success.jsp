@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>    
     
- 
     
+    <script>
+	alert('${message}');
+	location.href="<%=request.getContextPath()%>/common/login";
+</script>
+ 
+<!--  
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,3 +48,5 @@
 
 </body>
 </html>
+
+-->    

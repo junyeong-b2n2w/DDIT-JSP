@@ -12,4 +12,8 @@ public interface MemberService {
 	int regist(MemberVO member) throws SQLException;
 	
 	List<MemberVO> getMemberList () throws SQLException;
+	
+	int modify(MemberVO member) throws SQLException;
+	
+	int delete(String id ) throws SQLException;
 }

@@ -1,6 +1,8 @@
 package com.jsp.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,23 +15,17 @@ import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
 /**
- * Servlet implementation class Regist
+ * Servlet implementation class MemberModify
  */
-@WebServlet("/common/regist")
-public class Regist extends HttpServlet {
+@WebServlet("/member/modify")
+public class MemberModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/common/registForm";
+		String url = "/member/detail";
 		
-		ViewResolver.view(url, request, response);
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		String url = "/common/regist_success";
 		//입력
 		String id = request.getParameter("id").trim();
 		String pwd = request.getParameter("pwd").trim();
@@ -53,16 +49,15 @@ public class Regist extends HttpServlet {
 			member.setPhone(phone);
 			
 					
-			int cnt = service.regist(member);
+			int cnt = service.modify(member);
 			
 			
 			if(cnt > 0) {
-				message = member.getName() + "님 가입 성공 입니다.";
+				message = member.getName() + "님 수정 성공 입니다.";
 				request.setAttribute("member", member);
 			}else {
 				
-				url ="/common/regist_fail";  
-				message = "회원가입에 실패하였습니다.";
+				message = "회원수정에 실패하였습니다.";
 			}
 			
 			request.setAttribute("message", message);
@@ -72,12 +67,16 @@ public class Regist extends HttpServlet {
 		
 		
 		
-		
-		
 		ViewResolver.view(url, request, response);
+				
+				
 		
-		
-		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

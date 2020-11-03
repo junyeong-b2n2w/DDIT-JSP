@@ -1,7 +1,7 @@
 package com.jsp.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,40 +15,27 @@ import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MemberModify
  */
-@WebServlet("/common/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/member/delete")
+public class MemberDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/common/login";
+		String url = "redirect:/member/list";
 		
-		ViewResolver.view(url, request, response);
 		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String url = "redirect:/common/main";
 		//입력
 		String id = request.getParameter("id").trim();
-		String pwd = request.getParameter("pwd").trim();
-		String message = null;
-		//처리
+		System.out.println(id);
 		MemberService service = MemberServiceImpl.getInstance();
 		
 		try {
-			MemberVO member = service.getMember(id);
-			if(!(member != null && member.getPwd().equals(pwd))) {
-				url = "/common/loginFail";  
-				message = "아이디 혹은 패스워드가 일치하지 않습니다.";
-				request.setAttribute("message", message);
-			}else {
-				request.getSession().setAttribute("loginUser", member);
-				
-			}
+			
+	
+			int cnt = service.delete(id);
+
 			
 			
 		} catch (Exception e) {
@@ -57,10 +44,16 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		
-		
-		
 		ViewResolver.view(url, request, response);
+				
+				
+		
+	}
+
 	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

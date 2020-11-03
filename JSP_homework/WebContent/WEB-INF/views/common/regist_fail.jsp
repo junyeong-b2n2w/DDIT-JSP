@@ -4,5 +4,5 @@
     
 <script>
 	alert('<%=request.getAttribute("message")%>');
-	location.href="<%=request.getContextPath()%>/common/login";
+	location.href="<%=request.getContextPath()%>/common/regist";
 </script>

@@ -60,4 +60,30 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return memberList;
 	}
+	
+	@Override
+	public int delete(String id) throws SQLException {
+		int cnt = 0;
+		try {
+			cnt = client.delete("member.delete", id);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return cnt;
+	}
+	
+	@Override
+	public int modify(MemberVO member) throws SQLException {
+		int cnt = 0;
+		try {
+			cnt = client.update("member.modify", member);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return cnt;
+	}
 }

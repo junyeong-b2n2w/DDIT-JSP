@@ -16,4 +16,15 @@
 	<insert id="regist" parameterClass="memberVO">
 		insert into member values( #id#, #pwd#, #name#, #email#, #phone#)
 	</insert>
+	
+	
+	<update id="modify" parameterClass="memberVO">
+		update member set pwd=#pwd#, name=#name#, email=#email#,phone=#phone# where id=#id#
+	
+	</update>
+	
+	<delete id="delete" parameterClass="String">
+		delete member where id=#id#
+	</delete>
+	
 </sqlMap>
