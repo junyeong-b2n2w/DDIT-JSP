@@ -3,9 +3,9 @@
 <%@ page trimDirectiveWhitespaces="true" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/WEB-INF/views/include/header.jsp">
-	<c:param name="title">메인페이지</c:param>
-</c:import>
+<c:set var="title" value="메인페이지" />
+
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            <h1 class="m-0 text-dark">main directive</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -144,7 +144,7 @@
   <!-- /.content-wrapper -->
   
   
-<c:import url="/WEB-INF/views/include/footer.jsp" />
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 	
 
   

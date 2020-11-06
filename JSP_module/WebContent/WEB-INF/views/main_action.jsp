@@ -1,11 +1,13 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/WEB-INF/views/include/header.jsp">
-	<c:param name="title">메인페이지</c:param>
-</c:import>
+
+<jsp:include page ="/WEB-INF/views/include/header.jsp">
+	<jsp:param value='<%=URLEncoder.encode("메인페이지") %>'	name="title"/>
+</jsp:include>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -14,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            <h1 class="m-0 text-dark">main action</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -144,7 +146,7 @@
   <!-- /.content-wrapper -->
   
   
-<c:import url="/WEB-INF/views/include/footer.jsp" />
+<jsp:include page ="/WEB-INF/views/include/footer.jsp"/>
 	
 
   
