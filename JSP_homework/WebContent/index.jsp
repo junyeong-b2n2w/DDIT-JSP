@@ -3,5 +3,5 @@
 <%@ page trimDirectiveWhitespaces="true" %>    
     
 <script>
-	location.href="registForm.jsp";
+	location.href="<%=request.getContextPath()%>/common/main";
 </script>
