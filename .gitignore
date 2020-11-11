@@ -27,3 +27,8 @@ JSP_sitemesh/.classpath
 JSP_sitemesh/.project
 JSP_sitemesh/
 JSP_Board/build/
+
+JSP_listener/.classpath
+JSP_listener/.project
+JSP_listener/.settings/
+JSP_listener/build/

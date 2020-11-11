@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 
+import com.jsp.action.ApplicationContext;
 import com.jsp.dao.MemberDAO;
 import com.jsp.dao.MemberDAOImpl;
 import com.jsp.dispatcher.ViewResolver;
@@ -26,12 +27,8 @@ public class LoginServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		OracleMyBatisSqlSessionFactory sqlSessionFactory = new OracleMyBatisSqlSessionFactory();
-		MemberDAOImpl memberDAO = new MemberDAOImpl();
-		memberService = new MemberServiceImpl();
+		memberService = (MemberService)ApplicationContext.getApplicationContext().get("memberService");
 		
-		memberDAO.setSqlSessionFactory(sqlSessionFactory);
-		((MemberServiceImpl)memberService).setMemberDAO(memberDAO);
 		
 	}
 	

@@ -1,0 +1,11 @@
+<web-app>
+	<context-param>
+		<param-name>message</param-name>
+		<param-value>좋은 아침 입니다</param-value>
+	</context-param>
+	
+	
+	<listener>
+		<listener-class>com.jsp.listener.GetInitParamListener</listener-class>
+	</listener>
+</web-app>
