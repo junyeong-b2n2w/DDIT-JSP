@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>    
     
-<script>
-	location.href = "common/loginForm.do";
-</script>
+
+<div class="content-wrapper">
+	<div class="content">
+		<div class="content-header">
+			<h1>Homepage</h1>
+		</div>
+	</div>
+</div>
