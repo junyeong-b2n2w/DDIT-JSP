@@ -41,7 +41,7 @@ public class MemberDAOImpl implements MemberDAO {
 		List<MemberVO> memberList = null;
 		
 		
-		memberList = session.selectList("Member-Mapper.selectMemberList",cri, rowBounds);
+		memberList = session.selectList("Member-Mapper.selectSearchMemberList",cri, rowBounds);
 		session.close();
 		return memberList;
 	}

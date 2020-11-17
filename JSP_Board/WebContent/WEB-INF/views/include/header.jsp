@@ -166,14 +166,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">${loginUser.name}님 환영합니다.</a>
-        </div>
-      </div>
+      	<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      		<div class="image">
+      			<img src="" class="img-circle elevation-2" alt="user Image" />
+      		</div>
+      		<div class="info">
+      			<div class="row">
+      				<a class="col-md-8 d-block" href="#">${loginUser.id }</a>
+      				<button class="btn btn-xs btn-primary col-xs-3" type="button"
+      				 onclick="location.href='<%=request.getContextPath() %>/common/logout.do';">Logout</button>
+      			</div>
+      			<a href="tel:${loginUser.phone }">tel : ${loginUser.phone }</a><br/>
+      			<a href="mailto:${loginUser.email }">email : ${loginUser.email }</a>
+      		</div>
+      	
+      	</div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">

@@ -11,7 +11,7 @@ public class MemberVO {
 	private String phone; // 휴대전화번호
 	private String picture; // 사진
 	private String address; // 주소
-	private Date regdate; // 입사일
+	private Date regDate; // 입사일
 	private String register; // 등록자
 	private String authority; // 권한
 	private int enabled; // 0퇴사 1재직 2휴직
@@ -58,11 +58,11 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getRegister() {
 		return register;
@@ -85,7 +85,7 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", phone=" + phone
-				+ ", picture=" + picture + ", address=" + address + ", regdate=" + regdate + ", register=" + register
+				+ ", picture=" + picture + ", address=" + address + ", regDate=" + regDate + ", register=" + register
 				+ ", authority=" + authority + ", enabled=" + enabled + "]";
 	}
 
