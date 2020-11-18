@@ -66,7 +66,7 @@ public class FrontServlet extends HttpServlet {
 		}
 		
 		if(view == null) { // 사실 페이지가없으면 404 에러르 띄워야하는데 현재는 500에러를 띄우게 되어있음 .. 
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 		
 	}
