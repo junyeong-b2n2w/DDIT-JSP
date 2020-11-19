@@ -28,6 +28,9 @@ window.onload = function(){
 			$(this).val("");
 			return;
 		};
+		
+		$('input[name="tempPicture"]').val(this.files[0].name);
+		
 		//사진 읽기와 썸네일 표시
 		if(this.files && this.files[0]){
 			var reader = new FileReader();
