@@ -59,13 +59,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO getMember(String id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO member = memberDAO.selectMemberById(id);
+		return member;
 	}
 
 	@Override
 	public void regist(MemberVO member) throws SQLException {
-		// TODO Auto-generated method stub
+		memberDAO.insertMember(member);
 
 	}
 

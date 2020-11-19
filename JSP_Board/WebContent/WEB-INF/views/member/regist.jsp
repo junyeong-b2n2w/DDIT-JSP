@@ -103,7 +103,7 @@
 						<div class="card-footer">
 							<div class="row">								
 								<div class="col-sm-6">
-									<button type="button" id="registBtn" class="btn btn-info">가입하기</button>
+									<button type="button" id="registBtn" onclick="submit_go();" class="btn btn-info">가입하기</button>
 							 	</div>
 							 	
 							 	<div class="col-sm-6">
@@ -121,5 +121,5 @@
 </div>
 <!-- /.content-wrapper -->
 
-
 <%@ include file="picture_js.jsp" %>
+<%@ include file="regist_js.jsp" %>

@@ -13,6 +13,7 @@ import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
 import com.jsp.exception.NotFoundIDException;
 import com.jsp.service.MemberService;
+import com.jsp.utils.ExceptionLoggerHelper;
 
 public class MemberRegistAction implements Action {
    
@@ -30,13 +31,13 @@ public class MemberRegistAction implements Action {
       
       MemberVO member = new MemberVO();
       
-      String id = request.getParameter("id");
-      String pwd = request.getParameter("pwd");
-      String name = request.getParameter("name");
-      String email = request.getParameter("email");
+      String id = request.getParameter("id").trim();
+      String pwd = request.getParameter("pwd").trim();
+      String name = request.getParameter("name").trim();
+      String email = request.getParameter("email").trim();
       String phone = "";
-      String authority = request.getParameter("authority");
-      String picture = request.getParameter("picture");
+      String authority = request.getParameter("authority").trim();
+      String picture = request.getParameter("picture").trim();
       
       for(String data : request.getParameterValues("phone")) {
          phone += data;
@@ -54,17 +55,21 @@ public class MemberRegistAction implements Action {
       PrintWriter out = response.getWriter();
       
       try {
-         memberService.regist(member);
+//          throw new SQLException("테스트");
+    	 memberService.regist(member);
          
          out.println("<script>");
-         out.println("alert('회원 등록이 정상적으로 되었습니다.");
-         out.println("window.opner.location.href='" + request.getContextPath() + "/member/list.do';");
+         out.println("alert('회원 등록이 정상적으로 되었습니다.');");
+         out.println("window.opener.location.href='" + request.getContextPath() + "/member/list.do';");
          out.println("window.close();");
          out.println("</script>");
+         
+
       }catch (SQLException e) {
          e.printStackTrace();
+         ExceptionLoggerHelper.write(request, e, memberService);
          out.println("<script>");
-         out.println("alert('회원등록이 실패했습니다.);");
+         out.println("alert('회원등록이 실패했습니다.');");
          out.println("history.go(-1);");
          out.println("</script>");
       } finally {
