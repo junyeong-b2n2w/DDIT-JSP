@@ -27,10 +27,10 @@ public interface MemberDAO {
 	void deleteMemeber(String id) throws SQLException;
 	
 	//회원정지
-	void disabledMemeber(MemberVO member) throws SQLException;
+	void disabledMemeber(String id) throws SQLException;
 	
 	//회원활성화
-	void enabledMemeber(MemberVO member) throws SQLException;
+	void enabledMemeber(String id) throws SQLException;
 		
 	
 }

@@ -71,26 +71,22 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void modify(MemberVO member) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.updateMemeber(member);
 	}
 
 	@Override
 	public void remove(String id) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.deleteMemeber(id);
 	}
 
 	@Override
 	public void disabled(String id) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.disabledMemeber(id);
 	}
 
 	@Override
 	public void enabled(String id) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.enabledMemeber(id);
 	}
 
 }

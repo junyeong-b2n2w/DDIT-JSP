@@ -3,51 +3,23 @@
 <%@ page trimDirectiveWhitespaces="true" %>    
     
 <form role="imageForm" action="upload/picture.do" method="post" enctype="multipart/form-data">
-	<input id="inputFile" name="pictureFile" type="file" class="form-control" style="display:none;">
+	<input id="inputFile" name="pictureFile" type="file" class="form-control" style="display:none;"
+		onchange="imageChange_go();">
 	<input id="oldFile" name="oldPicture" type="hidden" value=""/>
 	<input type="hidden" name="checkUpload" value="0"/>
 </form>
 
 <script>
-window.onload = function(){
-	$('input#inputFile').on('change', function(event){
-		//업로드 확인변수 초기화
-		$('input[name="checkUpload"]').val(0);
-		
-		var fileFormat = this.value.substr(this.value.lastIndexOf(".")+1).toUpperCase();
-		
-		// 이미지 확장자 JPG확인
-		if(!(fileFormat =="JPG" || fileFormat =="JPEG")){
-			alert("이미지는 jpg/jpeg 형식만 가능합니다.");
-			$(this).val("");
-			return;
-		};
-		//이미지 파일 용량 체크
-		if(this.files[0].size>1024*1024*1){
-			alert("사진 용량은 1MB 이하만 가능합니다.");
-			$(this).val("");
-			return;
-		};
-		
-		$('input[name="tempPicture"]').val(this.files[0].name);
-		
-		//사진 읽기와 썸네일 표시
-		if(this.files && this.files[0]){
-			var reader = new FileReader();
-			reader.onload = function (e){
-				$('div#pictureView')
-				.css({'background-image':'url('+ e.target.result+')',
-					'background-position':'center',	
-					'background-size':'cover',	
-					'background-repeat':'no-repeat'	
-				});
-			}
-			reader.readAsDataURL(this.files[0]);
-		}
-	});
 
+function imageChange_go(){
+	$('input[name="checkUpload"]').val(0);
+	
+	inputImage = $('input#inputFile')[0];
+	preViewPicture(inputImage, $('div#pictureView'));
 	
 }
+
+
 
 function upload_go(){
 	//alert("upload btn click");
