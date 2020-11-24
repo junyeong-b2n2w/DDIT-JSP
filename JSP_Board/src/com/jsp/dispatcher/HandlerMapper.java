@@ -53,6 +53,11 @@ public class HandlerMapper {
 						paramType = (paramType.charAt(0) + "").toLowerCase() + paramType.substring(1);
 						
 						try {
+							
+							if(ApplicationContext.getApplicationContext().get(paramType)==null) {
+								throw new Exception(paramType + " 인스턴스가 없습니다");
+							}
+							
 							method.invoke(commandAction, ApplicationContext.getApplicationContext().get(paramType));
 						} catch (Exception e) {
 							e.printStackTrace();

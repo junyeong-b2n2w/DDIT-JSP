@@ -20,6 +20,14 @@
     <param-name>menuDAO</param-name>
     <param-value>com.jsp.dao.MenuDAOImpl</param-value>
   </context-param>
+  <context-param>
+    <param-name>noticeService</param-name>
+    <param-value>com.jsp.service.NoticeServiceImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>noticeDAO</param-name>
+    <param-value>com.jsp.dao.NoticeDAOImpl</param-value>
+  </context-param>
   
   <listener>
     <listener-class>com.jsp.listener.ApplicationContextLoaderListener</listener-class>
@@ -64,6 +72,20 @@
   </filter>
   <filter-mapping>
     <filter-name>sitemesh</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <filter>
+    <filter-name>crossSiteScriptFilter</filter-name>
+    <filter-class>com.jsp.filter.CrossSiteScriptFilter</filter-class>
+    <init-param>
+      <param-name>XSSParameter</param-name>
+      <param-value>id,pwd,name,title</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>crossSiteScriptFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   

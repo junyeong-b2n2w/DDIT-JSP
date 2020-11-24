@@ -33,7 +33,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberVO> selectMemberList(SearchCriteria cri) throws SQLException {
 		SqlSession session = sqlSessionFactory.openSession();
 		
-		int offset = cri.getPageStartNum();
+		int offset = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
