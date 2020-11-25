@@ -12,12 +12,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
-import com.josephoconnell.html.HTMLInputFilter;
+import com.jsp.request.XSSRequestWrapper;
 
 public class CrossSiteScriptFilter implements Filter {
 
-	private List<String> crossParamList = new ArrayList<String>();
+	private List<String> crossParamNames = new ArrayList<String>();
 	
 	
 	@Override
@@ -27,23 +28,13 @@ public class CrossSiteScriptFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest requset, ServletResponse response, FilterChain chain)
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		for(String paramName : crossParamList) {
-			Map<String, String[]> paramMap = requset.getParameterMap();
-			if(paramMap!=null && requset.getParameter(paramName)!=null) {
-				String[] paramValues = requset.getParameterMap().get(paramName);
-				
-				paramValues[0] = HTMLInputFilter.htmlSpecialChars(paramValues[0]);
-				
-				requset.getParameterMap().put(paramName, paramValues);
-				
-				System.out.println(HTMLInputFilter.htmlSpecialChars(paramValues[0]));
-			}
-		}
+		XSSRequestWrapper requestWrapper = new XSSRequestWrapper( (HttpServletRequest)request);
+		requestWrapper.inputXSSFilter(crossParamNames);
 		
-			chain.doFilter(requset, response);
+		chain.doFilter(requestWrapper, response);
 		
 	}
 
@@ -54,10 +45,10 @@ public class CrossSiteScriptFilter implements Filter {
 		StringTokenizer token = new StringTokenizer(paramNames, ",");
 		
 		while(token.hasMoreTokens()) {
-			crossParamList.add(token.nextToken());
+			crossParamNames.add(token.nextToken());
 		}
 		
-		System.out.println(crossParamList);
+		System.out.println(crossParamNames);
 	}
 
 }

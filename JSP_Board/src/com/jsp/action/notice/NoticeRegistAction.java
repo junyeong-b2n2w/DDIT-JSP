@@ -40,7 +40,7 @@ public class NoticeRegistAction implements Action {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("window.opener.location.href='"+request.getContextPath()+"/notice/list.do';window.close");
+			out.println("window.opener.location.href='"+request.getContextPath()+"/notice/list.do';window.close();");
 			out.println("</script>");
 			out.close();
 			
