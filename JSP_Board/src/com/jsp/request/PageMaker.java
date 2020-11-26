@@ -26,7 +26,7 @@ public class PageMaker {
 			startPage = 1;
 		}
 		
-		if( endPage > 0 ) {
+		if( endPage > realEndPage ) {
 			endPage = realEndPage;
 		}
 		

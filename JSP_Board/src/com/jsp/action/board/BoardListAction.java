@@ -1,4 +1,4 @@
-package com.jsp.action.notice;
+package com.jsp.action.board;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,25 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.request.SearchCriteria;
-import com.jsp.service.NoticeService;
-import com.jsp.service.NoticeServiceImpl;
+import com.jsp.service.BoardService;
 
-public class NoticeListAction implements Action{
+public class BoardListAction implements Action {
 
-	private NoticeService noticeService;
+	private BoardService  boardService;
 	
-	public void setNoticeService(NoticeService noticeService) {
-		this.noticeService = noticeService;
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
 	}
-
-	
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 
-		String url="/notice/list";
-		
+		String url = "/board/list";
 		
 		SearchCriteria cri = new SearchCriteria();
 		
@@ -45,7 +40,7 @@ public class NoticeListAction implements Action{
 		
 		try {
 			
-			Map<String, Object> dataMap = noticeService.getNoticeList(cri);
+			Map<String, Object> dataMap = boardService.getBoardList(cri);
 			request.setAttribute("dataMap", dataMap );
 			request.setAttribute("pageMaker", dataMap.get("pageMaker") );
 			
@@ -54,9 +49,7 @@ public class NoticeListAction implements Action{
 			e.printStackTrace();
 		}
 		
-		
 		return url;
-		
-		
 	}
+
 }

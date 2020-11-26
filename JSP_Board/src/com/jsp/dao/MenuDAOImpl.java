@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.jsp.dto.MenuVO;
-import com.jsp.mybatis.OracleMyBatisSqlSessionFactory;
 
 public class MenuDAOImpl implements MenuDAO {
 	
