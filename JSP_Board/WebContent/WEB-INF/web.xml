@@ -98,6 +98,10 @@
       <param-name>XSSParameter</param-name>
       <param-value>id,pwd,name,title</param-value>
     </init-param>
+    <init-param>
+    <param-name>includeURLs</param-name>
+    <param-value>regist,modify</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>crossSiteScriptFilter</filter-name>

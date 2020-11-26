@@ -67,7 +67,7 @@
 						<tr style="font-size:0.85em;">
 						<td>${notice.nno }</td>
 						<td id="boradTitle" style="text-align:left;max-width:100px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
-						<a href="javascript:OpenWindow('detail.do?nno=${notice.nno})','상세번호',800,700);">${notice.title }</a>
+						<a href="javascript:OpenWindow('detail.do?nno=${notice.nno}','상세번호',800,700);">${notice.title }</a>
 						</td>
 						<td>${notice.writer }</td>
 						<td><fmt:formatDate value="${notice.regDate }" pattern="yyyy-MM-dd" /></td>
