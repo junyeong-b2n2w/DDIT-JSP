@@ -11,7 +11,29 @@ private String content;   // 내용 (html)
 private int viewcnt;      // 조회수
 private Date regDate;     // 등록날짜
 private Date  updateDate;
-private String dist;
+
+private int replycnt;
+
+public BoardVO() {}
+
+
+
+public BoardVO(int bno, String title, String writer, String content, int viewcnt, Date regDate, Date updateDate) {
+	super();
+	this.bno = bno;
+	this.title = title;
+	this.writer = writer;
+	this.content = content;
+	this.viewcnt = viewcnt;
+	this.regDate = regDate;
+	this.updateDate = updateDate;
+}
+public int getReplycnt() {
+	return replycnt;
+}
+public void setReplycnt(int replycnt) {
+	this.replycnt = replycnt;
+}
 
 public int getBno() {
 	return bno;
@@ -54,12 +76,6 @@ public Date getUpdateDate() {
 }
 public void setUpdateDate(Date updateDate) {
 	this.updateDate = updateDate;
-}
-public String getDist() {
-	return dist;
-}
-public void setDist(String dist) {
-	this.dist = dist;
 }
 	
 }

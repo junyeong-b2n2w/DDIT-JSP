@@ -7,14 +7,13 @@ import com.jsp.dto.BoardVO;
 import com.jsp.request.SearchCriteria;
 
 public interface BoardService {
-
 	// 목록조회
 	Map<String, Object> getBoardList(SearchCriteria cri) throws SQLException;
 
 	// 상세보기
 	BoardVO getBoard(int bno) throws SQLException;
 
-	BoardVO getBoardModify(int bno) throws SQLException;
+	BoardVO getBoardForModify(int bno) throws SQLException;
 
 	// 등록
 	void write(BoardVO board) throws SQLException;

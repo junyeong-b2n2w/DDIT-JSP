@@ -15,79 +15,74 @@ public class BoardDAOImpl implements BoardDAO{
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-
+	
 	@Override
-	public List<BoardVO> selectSearchBoardList(SearchCriteria cri) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+	public List<BoardVO> selectBoardCriteria(SearchCriteria cri) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
 		
 		int offset=cri.getPageStartRowNum();
 		int limit=cri.getPerPageNum();		
 		RowBounds rowBounds=new RowBounds(offset,limit);		
 		
 		List<BoardVO> boardList=
-				sqlSession.selectList("Board-Mapper.selectSearchBoardList",cri,rowBounds);
-		sqlSession.close();
+				session.selectList("Board-Mapper.selectSearchBoardList",cri,rowBounds);
+		session.close();
 		
 		return boardList;
-		
 	}
-
+	
 	@Override
-	public int selectSearchBoardListCount(SearchCriteria cri) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		int count = sqlSession.selectOne("Board-Mapper.selectSearchBoardListCount",cri);
-		sqlSession.close();
-		
+	public int selectBoardCriteriaTotalCount(SearchCriteria cri) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
+				
+		int count=session.selectOne("Board-Mapper.selectSearchBoardListCount",cri);
+		session.close();
 		return count;
 	}
-
+	
 	@Override
 	public BoardVO selectBoardByBno(int bno) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession();		
+		SqlSession session = sqlSessionFactory.openSession();		
 		BoardVO board=
-				sqlSession.selectOne("Board-Mapper.selectBoardByBno",bno);
-		sqlSession.close();
+				session.selectOne("Board-Mapper.selectBoardByBno",bno);
+		session.close();
 		return board;
 	}
 
 	@Override
-	public void insertBoard(BoardVO Board) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);		
-		sqlSession.update("Board-Mapper.insertBoard",Board);
-		sqlSession.close();
-		
+	public void insertBoard(BoardVO board) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		session.update("Board-Mapper.insertBoard",board);
+		session.close();
 	}
 
 	@Override
-	public void updateBoard(BoardVO Board) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);		
-		sqlSession.update("Board-Mapper.updateBoard",Board);
-		sqlSession.close();
-		
+	public void updateBoard(BoardVO board) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		session.update("Board-Mapper.updateBoard",board);
+		session.close();
 	}
 
 	@Override
 	public void deleteBoard(int bno) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);		
-		sqlSession.update("Board-Mapper.deleteBoard",bno);
-		sqlSession.close();		
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		session.update("Board-Mapper.deleteBoard",bno);
+		session.close();
 	}
 
 	@Override
-	public void increaseViewCount(int bno) throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);		
-		sqlSession.update("Board-Mapper.increaseViewCount",bno);
-		sqlSession.close();		
+	public void increaseViewCnt(int bno) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession(true);		
+		session.update("Board-Mapper.increaseViewCount",bno);
+		session.close();
 	}
 
 	@Override
-	public int selectBoardSequenceNextValue() throws SQLException {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+	public int selectBoardSeqNext() throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
 		int seq_num=
-				sqlSession.selectOne("Board-Mapper.selectBoardSequenceNextValue");
-		sqlSession.close();
+				session.selectOne("Board-Mapper.selectBoardSeqNext");
+		session.close();
 		return seq_num;
 	}
-
 }

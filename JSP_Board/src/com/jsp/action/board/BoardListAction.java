@@ -13,43 +13,56 @@ import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
 
 public class BoardListAction implements Action {
-
-	private BoardService  boardService;
 	
+	private BoardService boardService;// = new BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
 	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "/board/list";
-		
-		SearchCriteria cri = new SearchCriteria();
-		
+
 		String page = request.getParameter("page");
 		String perPageNum = request.getParameter("perPageNum");
 		String searchType = request.getParameter("searchType");
 		String keyword = request.getParameter("keyword");
 		
-		cri.setPage(page);
-		cri.setPerPageNum(perPageNum);
-		cri.setSearchType(searchType);
-		cri.setKeyword(keyword);
-		
+		SearchCriteria cri = new SearchCriteria();
 		
 		try {
-			
-			Map<String, Object> dataMap = boardService.getBoardList(cri);
-			request.setAttribute("dataMap", dataMap );
-			request.setAttribute("pageMaker", dataMap.get("pageMaker") );
+			cri.setPage(Integer.parseInt(page));
+			cri.setPerPageNum(Integer.parseInt(perPageNum));
+		} catch (NumberFormatException e) {
+			System.out.println("페이지 번호를 1로 세팅합니다.");
+		}
+		if (searchType != null && keyword != null) {
+			cri.setSearchType(searchType);
+			cri.setKeyword(keyword);
+		}
+		
+		try {
+			Map<String,Object> dataMap=boardService.getBoardList(cri);
+			request.setAttribute("dataMap", dataMap);
 			
 		} catch (SQLException e) {
-			url="/error/500_error";
 			e.printStackTrace();
+			url=null;
 		}
+		
 		
 		return url;
 	}
 
 }
+
+
+
+
+
+
+
+
+

@@ -12,35 +12,28 @@ import com.jsp.dto.BoardVO;
 import com.jsp.service.BoardService;
 
 public class BoardDetailAction implements Action {
-	private BoardService  boardService;
 	
+	private BoardService boardService;//=BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+		this.boardService=boardService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "/board/detail";
+		String url="/board/detail";
 		
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int bno=Integer.parseInt(request.getParameter("bno"));
 		
-		String from = request.getParameter("from");
-		
-		BoardVO board = new BoardVO();		
 		try {
-			if(from!=null && from.equals("modify")) {
-				board = boardService.getBoardModify(bno);
-			}else {
-				board = boardService.getBoard(bno);
-			}
+			BoardVO board=boardService.getBoard(bno);
 			request.setAttribute("board", board);
-		}  catch (SQLException e) {
-			url="/error/500_error";
+		} catch (SQLException e) {
 			e.printStackTrace();
+			url=null; 
 		}
 		
 		return url;
-		
 	}
 
 }
