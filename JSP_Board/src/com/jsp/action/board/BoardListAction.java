@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jsp.action.Action;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.ReplyService;
 
 public class BoardListAction implements Action {
 	
@@ -46,6 +47,7 @@ public class BoardListAction implements Action {
 		try {
 			Map<String,Object> dataMap=boardService.getBoardList(cri);
 			request.setAttribute("dataMap", dataMap);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -47,7 +47,7 @@
 	
 	<select id="selectSearchBoardList" resultType="board">
 		select
-		* 
+		*
 		from board
 		where bno is not null
 		<include refid="search" />

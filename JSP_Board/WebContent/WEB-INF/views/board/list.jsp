@@ -73,7 +73,7 @@
 							<td>${board.bno }</td>
 							<td id="boardTitle" style="text-align:left;max-width: 100px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 							<a href="javascript:OpenWindow('detail.do?bno=${board.bno }','상세보기',800,700);">
-								<span class="col-sm-12 ">${board.title }
+								<span class="col-sm-12 ">${board.title } 
 									<c:if test="${board.replycnt ne 0 }">		
 										<span class="nav-item">															
 										&nbsp;&nbsp;<i class="fa fa-comment"></i>

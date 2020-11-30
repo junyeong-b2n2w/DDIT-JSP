@@ -34,7 +34,6 @@
 		update reply 
 		set 
 		replyText=#{replyText}	
-		updatedate=sysdate
 		where rno=#{rno}
 	</update>
 	

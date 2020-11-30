@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jsp.dao.BoardDAO;
+import com.jsp.dao.ReplyDAO;
 import com.jsp.dto.BoardVO;
 import com.jsp.request.PageMaker;
 import com.jsp.request.SearchCriteria;
@@ -14,6 +15,11 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	public void setBoardDAO(BoardDAO boardDAO) {
 		this.boardDAO=boardDAO;
+	}
+	
+	private ReplyDAO replyDAO;
+	public void setReplyDAO(ReplyDAO replyDAO) {
+		this.replyDAO = replyDAO;
 	}
 
 	
@@ -54,6 +60,9 @@ public class BoardServiceImpl implements BoardService{
 		//현재 page 번호에 맞는 리스트를 perPageNum 개수 만큼 가져오기.
 		List<BoardVO> boardList=boardDAO.selectBoardCriteria(cri);
 		
+		for(BoardVO board : boardList) {
+			board.setReplycnt(replyDAO.countReply(board.getBno()));
+		}
 		
 		
 		//전체 board 개수

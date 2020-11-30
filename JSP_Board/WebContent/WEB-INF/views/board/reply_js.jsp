@@ -6,7 +6,10 @@
 <script type="text/x-handlebars-template"  id="reply-list-template" >
 {{#each .}}
 <div class="replyLi" >
-	<i class="fas fa-comments bg-yellow"></i>
+	<div class="image">
+      			<img data-target="{{replyer}}" width="50px" src="{{getPicture replyer}}" class="img-circle elevation-2" alt="user Image" />
+      		</div>
+
  	<div class="timeline-item" >
   		<span class="time">
     		<i class="fa fa-clock"></i>{{prettifyDate regDate}}
@@ -16,7 +19,7 @@
   		</span>
 	
   		<h3 class="timeline-header"><strong style="display:none;">{{rno}}</strong>{{replyer}}</h3>
-  		<div class="timeline-body" id="{{rno}}-replytext">{{replyText}} </div>
+  		<div class="timeline-body" id="{{rno}}-replyText">{{replyText}} </div>
 	</div>
 </div>
 {{/each}}	
@@ -75,6 +78,75 @@ window.onload=function(){
 		});
 	});
 	
+	$('div.timeline').on('click','#modifyReplyBtn',function(){
+		//alert('123');
+		var rno = $(this).attr("data-rno");
+		var replyer = $(this).attr("data-replyer");
+		var replyText = $('#'+rno+'-replyText').text();
+		
+		$('#replytext').val(replyText);
+		$('.modal-title').text(rno);
+	});
+	
+	$('#replyModBtn').on('click', function(event){
+		//alert("mod!");
+		var rno=$('.modal-title').text();
+		var replytext = $('#replytext').val();
+		
+		var sendData = {
+				rno : rno,
+				replyText : replytext
+		}
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/replies/update.do",
+			type:"post",
+			data: JSON.stringify(sendData),
+			success: function(result){
+				alert("수정되었습니다.");
+				getPage("<%=request.getContextPath()%>/replies/list.do?bno=${board.bno}&page="+replyPage);
+			},
+			error:function(error){
+				alert("수정실패햇습니다.")
+			},
+			complete:function(){
+				$('#modifyModal').modal('hide');
+			}
+		});
+	});
+	
+	$('#replyDelBtn').on('click', function(event){
+		var rno=$('.modal-title').text();
+		
+		var sendData = {
+				bno:"${board.bno}",
+				rno : rno,
+				page : replyPage
+		};
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/replies/remove.do",
+			type:'post',
+			data:JSON.stringify(sendData),
+			success:function(page){
+				alert("삭제되었습니다");
+				replyPage=page;
+				getPage("<%=request.getContextPath()%>/replies/list.do?bno=${board.bno}&page="+page);
+			},
+			error:function(error){
+				alert("삭제 실패하였습니다.");
+			},
+			complete:function(){
+				$('#modifyModal').modal('hide');
+			}
+		});
+		
+
+	
+	});	
+	
+	
+	
 }
 
 var printData=function(replyArr, target, templateObject){
@@ -94,9 +166,23 @@ Handlebars.registerHelper({
 	},
 	"loginUserCheck":function(replyer){
 		return "${loginUser.id}"==replyer ? "visible" : "none"; 
-	}	
+	},
+	"getPicture":function(replyer){
+		var data={id:replyer};
+		var src="<%=request.getContextPath() %>/member/getPicture.do?picture=";
+		var flag=false;
+		$.getJSON("<%=request.getContextPath()%>/member/getMemberToJson.do",data,function(result){			
+			if(result){
+				src+=result.picture;	
+			}else{
+				src+="noImage.jpg";		
+			}
+			$('img[data-target="'+replyer+'"]').attr("src",src);
+		});
+	}
 	
-});
+})
+		
 
 //reply pagination
 
