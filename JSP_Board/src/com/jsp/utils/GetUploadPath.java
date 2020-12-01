@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import org.apache.ibatis.io.Resources;
 
-import sun.util.resources.cldr.aa.CalendarData_aa_ER;
-
 public class GetUploadPath {
 	
 	private static Properties properties = new Properties();
